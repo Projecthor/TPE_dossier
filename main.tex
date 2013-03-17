@@ -12,6 +12,7 @@
 \usepackage{pgfplots}
 \usepackage{tocloft}
 \usepackage[raccourcis]{FAST}
+\usepackage{algorithm2e}
 
 % Paramètres language
 \lstset{basicstyle=\normalsize,
@@ -43,10 +44,10 @@
 \tableofcontents
 
 \part{Introduction.}
-\chapter{Contexte.}
+\chapter{Contexte.} \label{intro}
 \input intro.tex
 
-\chapter{Règles du jeu.}
+\chapter{Règles du jeu.} \label{regles}
 \input regles.tex
 
 \part{Construction.}
