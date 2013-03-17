@@ -1,0 +1,63 @@
+
+\begin{figure}
+	\begin{center}
+		{\setlength\fboxsep{5pt}
+			\fbox{
+				\begin{circuitikz}[american]
+					\draw (-2,-1) to[voltage source,l=$3.6V$] (-2,1);
+					\draw (-2,1) to[empty diode] (0,1);
+					\draw (-2,1) -- (-2,5);
+					\draw (-2,5) -- (6,5);
+					\draw (0,5) to[generic,l=$570$] (0,1);
+					\draw (-2,-1) -- (-2,-3);
+					\draw (-2,-3) -- (10,-3);
+					\draw (0,1) to[capacitor,l=$47\mu$] (2,1);
+					\draw (2,5) to[pR] (2,1);
+					\draw (4,5) to[generic,l=$4700$] (4,1);
+					\draw (6,5) to[generic,l=$570$] (6,1);
+					\draw (6,1) to[capacitor,l=$47\mu$] (4,1);
+					\draw (6,1) -- (6,-0.5);
+					\draw (6,-1) node[npn] (npn1) {};
+					\draw (0,1) -- (0,-0.5);
+					\draw (0,-1) node[npn,xscale=-1] (npn2) {};
+					\draw (2,1) -- (npn1.B);
+					\draw (4,1) -- (npn2.B);
+					\draw (0,-1.5) -- (0,-3);
+					\draw (6,-1.5) -- (6,-3);
+
+					\draw (8,1) node[npn] (npn3) {};
+					\draw (6,1) -- (7.5,1);
+					\draw (8,5) to[voltage source,l=$18V$] (8,1.5);
+					\draw (8,0.5) -- (8,-3);
+					\draw (8,5) -- (10,5);
+					\draw (10,5) to[inductor,l=K] (10,-3);
+				\end{circuitikz}
+		}}
+	\end{center}
+	\begin{center}
+		{\setlength\fboxsep{5pt}
+			\fbox{
+				\begin{circuitikz}
+					\draw (0,2) to[cspst,l=K] (0,-2);
+					\draw (3,1) node[transformer] (tr) {};
+					\draw (0,2) -- (2,2);
+					\draw (0,-2) -- (2,-2);
+					\draw (2,2) -- (tr.A1);
+					\draw (2,-2) -- (tr.A2);
+					\draw (4.1,1.5) -- (8,1.5);
+					\draw (tr.B1) -- (4.1,1.5);
+					\draw (8,1.5) to[capacitor,l=$680\mu$] (8,-1.1);
+					\draw (tr.B2) to[empty diode] (5,-1.1);
+					\draw (5,-1.1) -- (8,-1.1);
+					\draw (5,-1.1) to[capacitor,l=$680\mu$] (5,1.5);
+					\draw (6.5,-1.1) to[ageneric,l=néon] (6.5,0);
+					\draw (6.5,0) to[generic,l=$300k$] (6.5,1.5);
+					\draw (6.5,1.5) to[inductor,l=canon] (6.5,3);
+					\draw (6.5,3) -- (8,3);
+					\draw (8,3) to[cspst] (8,1.5);
+				\end{circuitikz}
+		}}
+	\end{center}
+	\caption{Circuit modèle.}
+	\label{oldcircuit}
+\end{figure}
