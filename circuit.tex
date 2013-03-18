@@ -1,7 +1,7 @@
 
 \begin{figure}
 	\begin{center}
-		\begin{circuitikz}[american]
+		\begin{circuitikz}
 			% Carte arduino
 			\draw (-5,-2) -- (-2,-2);
 			\draw (-5,-2) -- (-5,3);
@@ -51,10 +51,10 @@
 			\draw (tr.B1) -- (6.1,1.5);
 			\draw (8.5,1.5) to[capacitor,l=$680\mu$] (8.5,-1.1);
 			\draw (tr.B2) to[empty diode] (7,-1.1);
-			\draw (7,-1.1) -- (8.5,-1.1);
+			\draw (7,-1.1) -- (10,-1.1);
 			\draw (7,-1.1) to[capacitor,l=$680\mu$] (7,1.5);
-			\draw (8.5,3) to[inductor,l=canon] (8.5,1.5);
-			\draw (7,3) -- (8.5,3);
+			\draw (10,3) to[inductor,l=canon] (10,-1.1);
+			\draw (7,3) -- (10,3);
 			\draw (7,1.5) -- (7,2.1);
 
 			\draw (-2.2,2.1) -- (-1.8,2.1);
