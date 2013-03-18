@@ -20,7 +20,7 @@ $(NAME).pdf : $(TEX) *.tex
 	pdflatex $<
 
 clean :
-	@rm -vf `ls --ignore=Makefile --ignore=*.tex --ignore=*.sty --ignore=pkgs`
+	@rm -vf `ls --ignore=Makefile --ignore=*.tex --ignore=*.sty --ignore=pkgs --ignore=docs`
 
 remove :
 	@rm -vf $(DEST)
