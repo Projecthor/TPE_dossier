@@ -1,0 +1,152 @@
+Le fonctionnement est divisé en deux phases, le chargement (\ref{gauss_charg}) et le
+tir (\ref{gauss_tir}).
+
+\section{Chargement.} \label{gauss_charg}
+
+Lors du chargement le circuit de relais \emph{1} est activé par la
+carte Arduino \emph{4} selon une fréquence de 10Hz. Ceci crée un
+signal périodique (donc des variations de courant) qui permet
+au transformateur \emph{2} de transmettre au circuit secondaire un
+courant électrique d'une tension plus forte mais d'une
+intensité plus faible.
+
+Ce courant va permettre de charger les condensateurs \emph{3}.
+Cependant, si nos condensateurs ont une tension aux bornes
+maximales de $200 V$, il n'atteindrons jamais cette limite. En
+effet la tension aux bornes en fonction du temps de charge $T$ en
+secondes suit une croissance logarithmique: au bout d'une
+certaine durée la tension augmente très lentement puis stagne.
+On a atteint l'asymptote de la courbe.
+
+À la suite d'une campagne de test cette durée a été fixée à $30
+s$, au bout de laquelle la tension stagne à $150 V$.
+
+Pour éviter que le courant passe de la borne négative à la borne
+positive des condensateurs via le transformateur sitôt le
+chargement terminé, on utilise une diode THT \emph{6} qui bloque le
+passage du courant dans ce sens.
+
+Après le temps de chargement convenu, la carte arduino \emph{4}
+arrête le circuit de relais \emph{1}: les condensateurs \emph{3} sont
+chargés. L'énergie stockée par les condensateurs est donnée par
+la formule:
+\begin{equation}
+	E = \frac{1}{2}Cu^2
+\end{equation}
+
+Avec E en Joules, C la capacité en Farads et u la tension aux
+bornes en   Volts. Cette formule va nous permettre de calculer
+l'efficacité de notre   canon (nous y reviendrons plus tard).
+
+\section{Tir.} \label{gauss_tir}
+
+Lorsque la commande de tir est envoyée, le circuits de relais
+\emph{5} est activée par la carte. Le tir peut également être
+déclenché manuellement avec l'interrupteur \emph{7}.
+
+Ce circuit ferme la maille et fait passer le courant dans la
+bobine \emph{8}, qui transforme l'énergie électrique en champ
+magnétique. La ligne de champ au milieu de la bobine est
+rectiligne: c'est elle qui va propulser la bille
+ferromagnétique. La puissance du champs magnétique est donnée
+par la formule:
+\begin{equation}
+	\phi = L*I
+\end{equation}
+
+Avec $\phi$ le flux du champs magnétique en Weber, $L$ l'inductance
+en Henry et $I$ l'intensité en Ampères.
+
+Pour améliorer la vitesse de propulsion de la bille, on peut
+donc soit   augmenter l'intensité du courant, soit augmenter
+l'inductance de la   bobine.
+
+Cette dernière est donnée par la formule :
+\begin{equation}
+	L=\frac{\mu_0*N^2*S}{l}
+\end{equation}
+
+Avec $L$ l'inductance en Henry, $\mu_0$ la constante magnétique, ($\mu_0=4*10^{-7} H·m^{-1}$ ), $N$ le nombre de
+spires, $S$ la section de la bobine en $m^2$ et $l$   la longueur de
+la bobine en mètre.
+
+Après avoir fabriqué notre première bobine, nous avons remarqué
+que   la vitesse de la bille était faible et qu'il fallait donc
+optimiser   l'inductance de la bobine. Pour cela nous avons
+refabriqué notre bobine   avec la même longueur de fil de
+cuivre mais en divisant par deux sa   longueur, ce qui a
+également doublé sa section. Nous allons calculer
+l'inductance de la première bobine puis de la deuxième, afin de
+calculer   le gain en inductance(ce calcul reste toutefois
+assez approximatif).
+
+\subsection{Première bobine.}
+La première bobine avait une longueur $l_{max}$ de $100\ mm$, un
+diamètre   extérieur $d_{ext}$ de $15\ mm$ et un diamètre intérieur
+$d_{int}$ de $8\ mm$,   utilisait une longueur $l_{cu}$ de $20000\ mm$ de fil
+de cuivre émaillé de   diamètre $d_{cu}=0,5\ mm$.
+
+On calcule la longueur de fil moyenne $l_{moy}$ contenue dans une
+spire: \\
+\begin{math}
+	l_{moy}= \pi*(d_{int}+\frac{d_{ext}-d_{int}}{2}) \\
+	l_{moy}=\pi*(8+\frac{15-8}{2}=36\ mm
+\end{math}
+
+On calcule le nombre de spire N de la bobine: \\
+\begin{math}
+	N=l_{cu}/l_{moy} \\
+	N= 20000/36 = 555 spires
+\end{math}
+
+On calcule la section S de la bobine: \\
+\begin{math}
+	S= \pi*[(\frac{d_{ext}}{2})^2 - (\frac{di_{int}}{2})^2] \\
+	S= \pi*[(\frac{15}{2})^2 - (\frac{8}{2})^2] = 126\ mm^2 = 0,0126 m^2
+\end{math}
+
+On calcule l'inductance $L_{1}$ de la bobine: \\
+\begin{math}
+	L_{1} = \frac{\mu_0.N^2.S}{l} \\
+	L_{1} = \frac{4\pi*10^{-7}*555^2*0.0126}{0.100}=0.049 H
+\end{math}
+
+\subsection{Bobine utilisée.}
+La deuxième bobine avait une longueur $l_{max}$ de $50\ mm$, un
+diamètre   extérieur $d_{ext}$ de $30\ mm$ et un diamètre intérieur
+$d_{int}$de $8\ mm$,   utilisait une longueur $l_{cu}$ $20000\ mm$ de fil
+de cuivre émaillé de   diamètre $d{cu}$ $0,5\ mm$.
+
+On calcule la longueur de fil moyenne $l_{moy}$ contenue dans une
+spire: \\
+\begin{math}
+	l{moy}= \pi*\frac{d{int}+(d{ext}-d{int})}{2} \\
+	l{moy}= \pi*\frac{8+(30-8)}{2}= 60\ mm
+\end{math}
+
+On calcule le nombre de spire $N$ de la bobine: \\
+\begin{math}
+	N = \frac{l_{cu}}{l_{moy}} \\
+	N = \frac{20000}{60} = 333\ spires
+\end{math}
+
+On calcule la section $S$ de la bobine: \\
+\begin{math}
+	S = \pi*[(\frac{d_{ext}}{2})^2 - \frac{(d_{int}}{2})^2] \\
+	S = \pi*[(\frac{30}{2})^2 -(\frac{8}{2})^2] = 657\ mm^2 = 0,0657\ m^2
+\end{math}
+
+On calcule l'inductance $L_{2}$ de la bobine: \\
+\begin{math}
+	L_{2} = \frac{\mu_0*N^2*S}{l} \\
+	L_{2} = \frac{4\pi*10^{-7}*333^2*0.0657}{0.05}= 0.18\ H
+\end{math}
+
+Le gain en inductance $G$ (donc en efficacité) est de: \\
+\begin{math}
+	G = 100*L_{2}/L_{1} \\
+	G = 100 * \frac{0.18}{0.049} = 367\%
+\end{math}
+
+Il y a donc un gain de $367\%$ d'efficacité en plus.
+

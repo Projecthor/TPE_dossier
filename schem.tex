@@ -1,0 +1,40 @@
+Aux termes de multiples recherches nous sommes arrivés au
+schéma de canon Gauss de la figure~\ref{oldcircuit}, qui avait l'avantage d'être assez
+simple et d'utiliser des composants usuels.
+
+\input oldcircuit.tex
+
+Néanmoins, nous avons modifié ce montage pour qu'il corresponde
+mieux à nos besoins.
+
+Toute la partie gauche du schéma électrique est une partie
+\emph{commande}; c'est elle qui, en ouvrant et fermant le
+relais à une fréquence de l'ordre d'une dizaine de Hertz, va
+créer le signal périodique nécessaire au bon fonctionnement du
+transformateur. Nous l'avons supprimée, cette fonction étant
+assurée par la carte Arduino: la carte, à l'aide d'un
+programme informatique, active le relais selon une fréquence
+donnée.
+
+La lampe néon ainsi que sa résistance de $300\ k\Omega$ dont la
+fonction est de signaler la fin du chargement n'est pas utile
+car la carte arduino arrête automatiquement le chargement au
+bout d'un temps que nous avons déterminé.
+
+L'interrupteur de mise à feu est dans notre montage doublé par
+un relais contrôlé par la carte qui active le tir sur l'ordre
+de l'application Bluetooth. Nous avons néanmoins gardé
+l'interrupteur en cas de dysfonctionnement du relais.
+
+Lors des tests nous avons constatés que les deux relais
+contrôlés par la carte Arduino grillaient à l'usage, car les
+forts courants que nous leurs appliquions dans la partie
+\emph{puissance} créaient des arcs électriques les endommageant
+irrémédiablement. Nous avons donc du utiliser un double montage
+de relais: les relais 5V de la carte Arduino activent des
+relais 9 V plus résistants aux forts courants.
+
+Au final le montage que nous avons réalisé est représenté par la figure \ref{circuit}.
+
+\input circuit.tex
+
