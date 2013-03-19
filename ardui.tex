@@ -43,22 +43,22 @@ Ce protocole est suivit jusqu'à ce que le smartphone envoie à la carte arduino
 	\begin{center}
 		\begin{tikzpicture}[node distance=1.5cm]
 			\node[entity] (diff) {Réception difficulté};
-			\node[entity] (cond) [below of = diff] {Rençoit ordre chargement} edge (diff);
-			\node[entity] (end) [below of=cond] {Envoit fin chargement} edge (cond);
+			\node[entity] (cond) [below of = diff] {Reçoit ordre chargement} edge (diff);
+			\node[entity] (end) [below of=cond] {Envoie fin chargement} edge (cond);
 			\node[entity] (tir) [below of=end] {Reçoit ordre tir} edge (end);
-			\node[entity] (score) [below of=tir] {Envoit score} edge (tir);
+			\node[entity] (score) [below of=tir] {Envoie score} edge (tir);
 			\node[relationship] (term) [below of = score,node distance=2cm] {Reçoit fin ?} edge (score);
 
 			% Flèche 1
 			\draw (0,-9.2) -- (0,-10);
-			\draw (0.5,-9.6) node {Non};
+			\draw (0.5,-9.4) node {Non};
 			\draw (0,-10) -- (-3,-10);
 			\draw (-3,-10) -- (-3,-1.5);
 			\draw[->] (-3,-1.5) -- (-2.3,-1.5);
 
 			%Flèche 2
 			\draw (1.2,-8) -- (3,-8);
-			\draw (1.7,-7.7) node {Oui};
+			\draw (1.6,-7.7) node {Oui};
 			\draw (3,-8) -- (3,0);
 			\draw[->] (3,0) -- (1.7,0);
 		\end{tikzpicture}
@@ -68,7 +68,7 @@ Ce protocole est suivit jusqu'à ce que le smartphone envoie à la carte arduino
 \end{figure}
 
 \section{Fonctionnement.}
-Comme c'est un code C++, le programme est structuré en classes. Chacune a un rôle précis et elles sont toutes utilisées dans la fonction \emph{main} (voir section~\ref{ard_main}).
+Comme c'est un code C++, le programme est structuré en classes. Chacune a un rôle précis et elles sont toutes utilisées dans la fonction \emph{main} (voir section~\ref{ard_main}). L'intérêt de ce découpage en classes est de permettre une plus grande abstraction du code par rapport au matériel. C'est à dire pouvoir changer les composants utilisés en ne modifiant qu'une petite partie du code, donc en rendant le code le plus générique possible.
 
 Les classes sont les classes \emph{Bluetooth}~(\ref{ard_bt}), \emph{Canon}~(\ref{ard_can}), \emph{Motor}~(\ref{ard_mot}) et \emph{Game}~(\ref{ard_game}).
 
