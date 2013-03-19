@@ -50,7 +50,7 @@ Comme vous pouvez le constater, lors d'un tir toutes les valeurs sont connues à
 	\label{balis_sit}
 \end{figure}
 
-\section{Calculs}
+\section{Calculs} \label{balis_calc}
 On obtient la fonction de la trajectoire ($g$ étant l'accélération gravitationnelle, une constante liée sur terre ayant pour valeur $g = 10000\ mm.s^{-1}$) :\begin{equation}
 	traj(p) = -g*\frac{p^2}{2*\overrightarrow{v}^2*cos(\alpha)^2} + p * tan(\alpha) + d_y
 \end{equation}
@@ -202,3 +202,17 @@ On peut donc valider l'hypothèse selon laquelle $h$ est croissante (le graphiqu
 	\caption{$h$ en fonction de $\alpha$ et de $x$.}
 	\label{crb_h3}
 \end{figure}
+
+\section{Calcul de la vitesse.}
+Cette partie va servie à détailler la manière dont nous allons procéder afin de déterminer la vitesse du tir. En effet, cette constante est indispensable au bon fonctionnement du robot, car elle fait partie des constantes utilisées par les calculs de balistiques afin de viser.
+
+Tout d'abord, il nous faut préciser que la vitesse est une constante. En effet, le courant envoyé dans la bobine devra être toujours le même afin de garantir à la bille une vitesse de départ constante. Comme nous ne somme pas en moyen de contrôler exactement le chargement des condensateurs, nous ferons plusieurs mesures de la vitesse puis nous ferons une moyenne.
+
+Le protocole pour déterminer la vitesse est assez simple. La fonction $h$ nous permet de lier entre eux la vitesse, la hauteur sur la cible, l'angle de départ, et la distance à la cible (figure~\ref{balis_sit}). On peut donc calculer n'importe lequel d'entre eux si nous connaissons les trois autres. Il nous suffit donc de nous mettre dans une situation où nous connaissons l'angle, la distance à la cible et la hauteur sur cette cible.
+
+À cette fin, nous allons effectuer une série de tir. Pour ces tirs, au lieu de laisser le robot mesurer la distance à la cible et choisir l'angle, nous fixerons ces deux valeurs de façon arbitraire. Puis nous mesurerons la distance au centre de la cible. Nous aurons donc les trois paramètres nécessaires au calcul de la vitesse.
+
+Finalement, nous effectuerons une moyenne des vitesses calculées afin d'obtenir la constante que nous entrerons dans le code.
+
+Une fois que nous aurons cette constante, nous pourrons définir la taille de la cible est l'intervalle de distance à laquelle on peut la mettre. En effet, nous pourrons faire un graphique comme celui sur la figure~\ref{crb_h3} afin de déterminer pour quel intervalle notre robot est capable de toucher toute la cible.
+
