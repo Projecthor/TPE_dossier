@@ -28,7 +28,7 @@ Ce programme doit contrôler le robot. C'est à dire qu'il doit :\begin{itemize}
 Les niveaux de difficulté sont détaillés au chapitre~\ref{regles}, page~\pageref{regles} et les calculs de balistiques en annexe~\ref{balis}, page~\pageref{balis}.
 
 \subsection{Protocole bluetooth.} \label{prot_bt}
-Le protocole bluetooth se déroule en un certain nombre d'étapes :\begin{enumerate} % TODO logigramme
+Le protocole bluetooth se déroule en un certain nombre d'étapes :\begin{enumerate}
 	\item Le smartphone envoie le niveau de difficulté à la carte arduino.
 	\item Le smartphone envoie l'ordre de charger les condensateurs.
 	\item La carte android indique au smartphone la fin du chargement.
@@ -37,7 +37,35 @@ Le protocole bluetooth se déroule en un certain nombre d'étapes :\begin{enumer
 	\item On retourne à l'opération 2.
 \end{enumerate}
 
-Ce protocole est suivit jusqu'à ce que le smartphone envoie à la carte arduino l'ordre de fin.
+Ce protocole est suivit jusqu'à ce que le smartphone envoie à la carte arduino l'ordre de fin (voir figure~\ref{bt_logi}).
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}[node distance=1.5cm]
+			\node[entity] (diff) {Réception difficulté};
+			\node[entity] (cond) [below of = diff] {Rençoit ordre chargement} edge (diff);
+			\node[entity] (end) [below of=cond] {Envoit fin chargement} edge (cond);
+			\node[entity] (tir) [below of=end] {Reçoit ordre tir} edge (end);
+			\node[entity] (score) [below of=tir] {Envoit score} edge (tir);
+			\node[relationship] (term) [below of = score,node distance=2cm] {Reçoit fin ?} edge (score);
+
+			% Flèche 1
+			\draw (0,-9.2) -- (0,-10);
+			\draw (0.5,-9.6) node {Non};
+			\draw (0,-10) -- (-3,-10);
+			\draw (-3,-10) -- (-3,-1.5);
+			\draw[->] (-3,-1.5) -- (-2.3,-1.5);
+
+			%Flèche 2
+			\draw (1.2,-8) -- (3,-8);
+			\draw (1.7,-7.7) node {Oui};
+			\draw (3,-8) -- (3,0);
+			\draw[->] (3,0) -- (1.7,0);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Protocole bluetooth arduino.}
+	\label{bt_logi}
+\end{figure}
 
 \section{Fonctionnement.}
 Comme c'est un code C++, le programme est structuré en classes. Chacune a un rôle précis et elles sont toutes utilisées dans la fonction \emph{main} (voir section~\ref{ard_main}).
