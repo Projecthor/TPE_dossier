@@ -140,7 +140,7 @@ $h_1$ est décroissante alors que $h_2$ est croissante. On ne peut donc pas déd
 
 On peut remarquer que ces courbes ne sont valables que pour une valeur de $x$ arbitraire. On ne peut pas être sûr que c'est vrai pour toutes ses valeurs. Pourtant lorsque qu'on observe la figure~\ref{crb_hall} (page~\pageref{crb_hall}), on remarque que le rapport entre leurs variations reste le même pour toutes les valeurs de $x$ entre $1\ m$ et $4\ m$.
 
-On peut donc valider l'hypothèse selon laquelle $h$ est croissante.
+On peut donc valider l'hypothèse selon laquelle $h$ est croissante (le graphique 3d de $h$ est la figure~\ref{crb_h3}).
 
 \begin{figure}
 	\begin{center}
@@ -188,15 +188,17 @@ On peut donc valider l'hypothèse selon laquelle $h$ est croissante.
 \end{figure}
 
 \begin{figure}
-	\begin{minipage}[b]{0.45\linewidth}
+	\begin{center}
 		\centering
 		\begin{tikzpicture}
-			\begin{axis}[view={45}{45},height=0.9\linewidth, width=0.9\linewidth,
+			\begin{axis}[view={45}{45},height=0.5\linewidth, width=0.5\linewidth,
 					axis x line=bottom, axis y line=left, grid=major, title=$h_1$,
 				xlabel={$angle\ \alpha$}, ylabel={$x\ (m)$}, zlabel={$hauteur\ (m)$},colorbar]
 				\addplot3[surf,shader=faceted interp,z buffer=sort,samples=10,domain=0:45,y domain=1:4,
-				faceted color=black] {-10*y*y/(98*cos(x)*cos(x))};
+				faceted color=black] {-10*y*y/(98*cos(x)*cos(x))+y*tan(x)};
 			\end{axis}
 		\end{tikzpicture}
-	\end{minipage}
-	\end
+	\end{center}
+	\caption{$h$ en fonction de $\alpha$ et de $x$.}
+	\label{crb_h3}
+\end{figure}
