@@ -68,7 +68,9 @@ Quand une des barres est majoritairement ciblé, cela signifie qu'elle totalise 
 			\node[weak entity] (second) [below of=first] {Choix difficulté} edge (first);
 			\node[weak entity] (third) [below of=second] {Choix manches} edge (second);
 			\node[relationship] (cond) [below of = third,node distance=2.5cm] {Reste manche ?} edge (third);
-			\node[entity] (end) [right of=cond,node distance=3cm] {Fin} edge (cond);
+			\draw (0.5,-7) node {Oui};
+			\draw (1.8,-5.3) node {Non};
+			\node[entity] (end) [right of=cond,node distance=3.5cm] {Fin} edge (cond);
 			\node[entity] (joueur) [below of=cond,node distance=2.5cm] {Joueur tire} edge (cond);
 			\node[entity] (ordi) [below of=joueur] {Robot tire} edge (joueur);
 			\draw (0,-10) -- (0,-11);
