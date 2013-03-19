@@ -65,8 +65,8 @@ Quand une des barres est majoritairement ciblé, cela signifie qu'elle totalise 
 	\begin{center}
 		\begin{tikzpicture}[node distance=1.5cm]
 			\node[entity] (first) {Connection};
-			\node[weak entity] (second) [below of=first] {Difficulté} edge (first);
-			\node[weak entity] (third) [below of=second] {Manches} edge (second);
+			\node[weak entity] (second) [below of=first] {Choix difficulté} edge (first);
+			\node[weak entity] (third) [below of=second] {Choix manches} edge (second);
 			\node[relationship] (cond) [below of = third,node distance=2.5cm] {Reste manche ?} edge (third);
 			\node[entity] (end) [right of=cond,node distance=3cm] {Fin} edge (cond);
 			\node[entity] (joueur) [below of=cond,node distance=2.5cm] {Joueur tire} edge (cond);
