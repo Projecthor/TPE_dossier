@@ -35,7 +35,7 @@
 		\begin{circuitikz}
 			\draw (0,2) to[cspst,l=K] (0,-2);
 			\draw (3,1) node[transformer] (tr) {};
-			\draw (0,2) -- (2,2);
+			\draw (0,2) to[voltage source,l=$12V$] (2,2);
 			\draw (0,-2) -- (2,-2);
 			\draw (2,2) -- (tr.A1);
 			\draw (2,-2) -- (tr.A2);
