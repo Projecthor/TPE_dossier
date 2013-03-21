@@ -1,7 +1,7 @@
 % Chapitre sur le programme arduino
 
 \section{Présentation.}
-Bien qu'il soit habituellement considéré que l'arduino est un language dérivé du \emph{C}, c'est en fait du \emph{C++}. Par conséquent, le programme arduino de ce robot est codé en C++.
+Bien qu'il soit habituellement considéré que l'arduino est un language dérivé du \emph{C}, c'est en fait du \emph{C++}. Par conséquent, le programme arduino de ce robot est codé en \emph{C++}.
 
 Les outils utilisés sont :
 \begin{description}
@@ -31,9 +31,9 @@ Les niveaux de difficulté sont détaillés au chapitre~\ref{regles}, page~\page
 Le protocole bluetooth se déroule en un certain nombre d'étapes :\begin{enumerate}
 	\item Le smartphone envoie le niveau de difficulté à la carte arduino.
 	\item Le smartphone envoie l'ordre de charger les condensateurs.
-	\item La carte android indique au smartphone la fin du chargement.
+	\item La carte arduino indique au smartphone la fin du chargement.
 	\item Le smartphone envoie l'ordre de tirer.
-	\item La carte android envoie son score.
+	\item La carte arduino envoie son score.
 	\item On retourne à l'opération 2.
 \end{enumerate}
 
@@ -68,12 +68,12 @@ Ce protocole est suivit jusqu'à ce que le smartphone envoie à la carte arduino
 \end{figure}
 
 \section{Fonctionnement.}
-Comme c'est un code C++, le programme est structuré en classes. Chacune a un rôle précis et elles sont toutes utilisées dans la fonction \emph{main} (voir section~\ref{ard_main}). L'intérêt de ce découpage en classes est de permettre une plus grande abstraction du code par rapport au matériel. C'est à dire pouvoir changer les composants utilisés en ne modifiant qu'une petite partie du code, donc en rendant le code le plus générique possible.
+Comme c'est un code \emph{C++}, le programme est structuré en classes. Chacune a un rôle précis et elles sont toutes utilisées dans la fonction \emph{main} (voir section~\ref{ard_main}). L'intérêt de ce découpage en classes est de permettre une plus grande abstraction du code par rapport au matériel. C'est à dire pouvoir changer les composants utilisés en ne modifiant qu'une petite partie du code, donc en rendant le code le plus générique possible.
 
 Les classes sont les classes \emph{Bluetooth}~(\ref{ard_bt}), \emph{Canon}~(\ref{ard_can}), \emph{Motor}~(\ref{ard_mot}) et \emph{Game}~(\ref{ard_game}).
 
-\subsection{Classe Bluetooth.} \label{ard_bt}
-La classe Bluetooth, qui gère la connection bluetooth, est définie comme suit :
+\subsection{Classe \emph{Bluetooth}.} \label{ard_bt}
+La classe \emph{Bluetooth}, qui gère la connection bluetooth, est définie comme suit :
 \begin{lstlisting}[language=C++]
 class Bluetooth
 {
@@ -91,10 +91,10 @@ Les noms des fonctions membres sont assez explicites :\begin{description}
 	\item[send] Envoie des valeurs de n'importe quel type grâce au fonctionnement des templates.
 \end{description}
 
-La classe utilise en interne une interface serial avec le shield bluetooth.
+La classe utilise en interne une interface \emph{Serial} avec le shield bluetooth.
 
-\subsection{Classe Canon.} \label{ard_can}
-La classe Canon, qui gère le chargement des condensateurs et le déclenchement du tir, est définie comme suit :
+\subsection{Classe \emph{Canon}.} \label{ard_can}
+La classe \emph{Canon}, qui gère le chargement des condensateurs et le déclenchement du tir, est définie comme suit :
 \begin{lstlisting}[language=C++]
 const unsigned long loadTime = 30000;
 
@@ -114,8 +114,8 @@ Les fonctions membres ont là aussi des noms assez explicite :\begin{description
 	\item[fire] Déclenche le tir en fermant le relai reliant les condensateurs à la bobine.
 \end{description}
 
-\subsection{Classe Motor.} \label{ard_mot}
-La classe Motor gère juste l'orientation du canon :
+\subsection{Classe \emph{Motor}.} \label{ard_mot}
+La classe \emph{Motor} gère juste l'orientation du canon :
 \begin{lstlisting}[language=C++]
 class Motor
 {
@@ -140,8 +140,8 @@ Ici, les fonctions membres sont un peu moins explicites :\begin{description}
 
 Cette classe Motor se contente d'utiliser la classe \emph{Servo} d'arduino en interne. Sont véritable intérêt est de permettre de changer le moyen d'orienter le canon sans modifier le reste du code.
 
-\subsection{Classe Game.} \label{ard_game}
-La classe game est un peu plus complexe, car elle a plusieurs rôles :
+\subsection{Classe \emph{Game}.} \label{ard_game}
+La classe \emph{Game} est un peu plus complexe, car elle a plusieurs rôles :
 \begin{lstlisting}[language=C++]
 class Game
 {
@@ -158,9 +158,9 @@ class Game
 };
 \end{lstlisting}
 
-Les constantes de balistiques (voir chapitre~\ref{balis}, page~\pageref{balis}) sont entrées dans les membres internes de cette classe.
+Les constantes de balistiques (voir annexe~\ref{balis}, page~\pageref{balis}) sont entrées dans les membres internes de cette classe.
 
-Les différents rôles de cette classe sont l'usage du capteur de distance, le calcul de l'angle et de la balistique, le test de sécurité, et la recéption des ordres bluetooth. Pour cette dernière fonction, cette classe utilise la classe Bluetooth (\ref{ard_bt}).
+Les différents rôles de cette classe sont l'usage du capteur de distance, le calcul de l'angle et de la balistique, le test de sécurité, et la réception des ordres bluetooth. Pour cette dernière fonction, cette classe utilise la classe \emph{Bluetooth} (\ref{ard_bt}).
 
 Les différents membres servent à interfacer ces rôles pour la fonction main : \begin{description}
 	\item[waitForDifficulty] Attend le niveau de difficulté par le smartphone. Retourne \emph{false} en cas d'erreur à la réception.

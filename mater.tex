@@ -1,4 +1,4 @@
-La figure~\ref{fast} présente le diagramme fast qui regroupe l'ensemble des solutions répondants aux fonctions techniques de notre TPE. Il nous permet d'établir toutes les solutions possibles afin d'en choisir la plus adaptée ou la plus simple. 
+La figure~\ref{fast} présente le diagramme FAST qui regroupe l'ensemble des solutions répondants aux fonctions techniques de notre TPE. Il nous permet d'établir toutes les solutions possibles afin d'en choisir la plus adaptée ou la plus simple. 
 
 \begin{figure}
 	\begin{center}
@@ -9,25 +9,25 @@ La figure~\ref{fast} présente le diagramme fast qui regroupe l'ensemble des sol
 \end{figure}
 
 \section{Moteur.}
-Afin de viser la cible précisément, il nous faut pouvoir faire pivoter le canon. En effet, s'il est fixe, cela implique que la distance à la cible ne varie pas. Or, notre canon doit pouvoir s'adapter à des distances variables, en changeant l'angle de tir $\alpha$ (pour plus d'information, se référer au chapitre~\ref{balis}  ). 
+Afin de viser la cible précisément, il nous faut pouvoir faire pivoter le canon. En effet, s'il est fixe, cela implique que la distance à la cible ne varie pas. Or, notre canon doit pouvoir s'adapter à des distances variables, en changeant l'angle de tir $\alpha$ (pour plus d'information, se référer à l'annexe~\ref{balis}  ). 
 
 Tout d'abord, nous avons envisagé de satisfaire cette solution technique avec un moteur à courant continu simple. Mais le pivot doit être précis pour les calculs de balistique et ce moteur nous offre une imprécision trop importante. Nous avons par conséquent penser à l'utilisation d'un moteur pas à pas qui nous donnerais une précision correcte. Ce moteur a une précision de $7.5\degres$, ce qui est insatisfaisant: une précision de 1 degré est préférable. Pour cela, l'utilisation d'un réducteur de vitesse augmenterais la précision. Nous nous sommes dit que comme nous devions faire un montage de réduction, autant en faire un bien précis: nous sommes tombés d'accord sur une réduction de 30 pour une précision de $\frac{1}{4}$ de degré
 
 Calcul du facteur: $\frac{7.5}{30} = \frac{1}{4}$.
 
-Avec les pignons disponibles nous obtenons ce facteur avec l'enchaînement d'engrenages suivant:  $frac{45}{12} * frac{40}{20} * frac{40}{20} * frac{40}{20} = 30$.
+Avec les pignons disponibles nous obtenons ce facteur avec l'enchaînement d'engrenages suivant:  $\frac{45}{12} * \frac{40}{20} * \frac{40}{20} * \frac{40}{20} = 30$.
 
-Soit, si on explicite, nous avons une roue de 12 dents qui entraîne une roue de 45 dents (réduisant la vitesse de $frac{45}{12} = 3.75$) qui se trouve sur le même axe qu'une roue de 20 dents qui entraîne une roue de 40 dents(réduisant la vitesse de $frac{40}{20} = 2$), ces deux ensembles réduisent donc la vitesse de $3.75 * 2 = 7.5$, etc.
+Soit, si on explicite, nous avons une roue de 12 dents qui entraîne une roue de 45 dents (réduisant la vitesse de $\frac{45}{12} = 3.75$) qui se trouve sur le même axe qu'une roue de 20 dents qui entraîne une roue de 40 dents(réduisant la vitesse de $\frac{40}{20} = 2$), ces deux ensembles réduisent donc la vitesse de $3.75 * 2 = 7.5$, etc.
 
-Finalement, après quelques recherches, nous avons vu qu'un servomoteur était le type de moteur qui nous fallait absolument. En effet son utilisation est plus simple au point de vue de la programmation, il  ne nécessite pas de facteur de réduction car il s'ajuste lui même à l'aide d'une résistance rotative et enfin il possède un couple largement satisfaisant ($3kg.cm{-1}$) pour soulever notre canon (de l'ordre de $200g$).
+Finalement, après quelques recherches, nous avons vu qu'un servomoteur était le type de moteur qu'il nous fallait. En effet son utilisation est plus simple du point de vue de la programmation, il  ne nécessite pas de facteur de réduction car il s'ajuste lui même à l'aide d'une résistance rotative et enfin il possède un couple largement suffisant ($3kg.cm^{-1}$) pour soulever notre canon (de l'ordre de $200g$).
 
 \section{Système de propulsion.}
-Pour tirer la bille, plusieurs choix s'offre à nous. Nous avons pensé à un système de propulsion par ressort qui avait l'avantage d'être simple et de prendre peu de place. Néanmoins sa puissance est difficilement réglable et trop faible pour parvenir à des distances correctes. 
+Pour tirer la bille, plusieurs choix s'offraient à nous. Nous avons pensé à un système de propulsion par ressort qui avait l'avantage d'être simple et de prendre peu de place. Néanmoins sa puissance est difficilement réglable et trop faible pour parvenir à des distances correctes. 
 
-Un système de propulsion pneumatique est également possible et aurait l'avantage d'être puissant et entièrement automatique. Cependant il serait difficile à mettre en place car il possède des composants trop spécifiques  comme comme un réservoir à air comprimé (ressource peu accessible), des tuyaux, des vannes...
+Un système de propulsion pneumatique était également possible et aurait l'avantage d'être puissant et entièrement automatique. Cependant il serait difficile à mettre en place car il possède des composants trop spécifiques  comme comme un réservoir à air comprimé (ressource peu accessible), des tuyaux, des vannes...
 
-Finalement nous avons adopté la solution d'un canon Gauss qui ne nécessite   que  des composants électroniques communs, et peut être entièrement automatisable. De plus, il représente un défi scientifique intéressant (pour en savoir plus sur le canon Gauss, aller au chapitre {canon}) .
+Finalement nous avons adopté la solution d'un canon Gauss qui ne nécessite   que  des composants électroniques communs, et peut être entièrement automatisable. De plus, il représente un défi scientifique intéressant (pour en savoir plus sur le canon Gauss, aller au chapitre~\ref{gauss}) .
 
 Nous avons choisi de prendre une batterie 12 V comme alimentation afin que le lanceur de bille automatique soit transportable et déplaçable aisément, car une alimentation secteur serait encombrante. De plus le montage du canon Gauss nécessite ce genre de batterie pour fonctionner (ou du moins dans notre schéma de canon).
 
-Enfin, nous avons récupéré  le transformateur sur un micro-onde: en effet, cet appareil d'électroménager nécessite de très hautes tensions (de l'ordre de 2000 V), produites par son transformateur à partir du secteur.
+Enfin, nous avons récupéré  le transformateur sur un micro-onde: en effet, cet appareil électroménager nécessite de très hautes tensions (de l'ordre de 2000 V), produites par son transformateur à partir du secteur.
